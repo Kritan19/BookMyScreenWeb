@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Payment Failed - Book My Screen</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div id="app">
+        <h1>Payment Unsuccessful</h1>
+        <div class="form-container" style="text-align: center;">
+            <p id="failureMessage" style="color: #ff5555; font-size: 1.1em; margin-bottom:20px;">Your payment could not be processed or was cancelled.</p>
+            <button onclick="window.location.href='index.html'">Try Booking Again</button>
+        </div>
+    </div>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const params = new URLSearchParams(window.location.search);
+            const message = params.get('message');
+            const transactionId = params.get('transactionId') || params.get('oid'); // Check for different param names
+            const status = params.get('status');
+            let displayMessage = "Your payment could not be processed or was cancelled.";
+
+            if (message) {
+                displayMessage = decodeURIComponent(message.replace(/_/g, ' ')); // Replace underscores with spaces
+            }
+            if (status) {
+                displayMessage += ` (Status: ${status})`;
+            }
+            if (transactionId) {
+                displayMessage += `<br><small>Transaction ID: ${transactionId}</small>`;
+            }
+            document.getElementById('failureMessage').innerHTML = displayMessage;
+        });
+    </script>
+</body>
+</html>

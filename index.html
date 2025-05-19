@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins&display=swap" rel="stylesheet">
+    <title>Book My Screen</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div id="app">
+        <h1>BOOK MY SCREEN</h1>
+
+        <div id="authContainer"> <!-- Wrapped auth sections -->
+            <div id="auth">
+                <div id="login" style="display: block;">
+                    <h2>Login</h2>
+                    <input type="email" id="email" placeholder="Email">
+                    <input type="password" id="password" placeholder="Password">
+                    <button onclick="login()">Login</button>
+                    <button onclick="showSignup()">Sign Up</button>
+                    <p id="loginError" class="authError"></p>
+                </div>
+                <div id="signup" style="display: none;">
+                    <h2>Sign Up</h2>
+                    <input type="email" id="signupEmail" placeholder="Email">
+                    <input type="password" id="signupPassword" placeholder="Password">
+                    <button onclick="signup()">Sign Up</button>
+                    <button onclick="showLogin()">Back to Login</button>
+                    <p id="signupError" class="authError"></p>
+                </div>
+            </div>
+        </div>
+
+        <div id="mainContent" style="display: none;"> <!-- Main content shown after login -->
+            <div id="userActions">
+                <span id="currentUserDisplay" style="margin-right: 20px;"></span>
+                <button onclick="logout()" id="logoutButton">Logout</button>
+            </div>
+
+            <div id="movieList">
+                <h2>Movies</h2>
+                <div id="movies" class="movie-grid"></div>
+            </div>
+
+            <div id="adminSection" style="display: none;">
+                <button id="adminButton" onclick="showAdminForm()">Movie Management</button>
+                <button id="viewBookingsButton" onclick="viewAllBookings()">View All Bookings</button>
+
+                <div id="adminForm" style="display: none;">
+                    <h2>Add/Edit Movie</h2>
+                    <input type="text" id="movieTitle" placeholder="Title">
+                    <input type="text" id="movieDescription" placeholder="Description">
+                    <input type="text" id="movieShowtimes" placeholder="Showtimes (comma-separated: 10:00 AM, 02:00 PM)">
+                    <input type="text" id="movieImageUrl" placeholder="Image URL">
+                    <button onclick="addOrUpdateMovie()">Save Movie</button>
+                    <button onclick="hideAdminForm()">Cancel</button>
+                </div>
+
+                <div id="bookingsDisplayArea" style="display: none; margin-top: 20px;">
+                    <h2>All Bookings</h2>
+                    <div id="bookingsTableContainer">
+                        <!-- Bookings will be loaded here -->
+                        <p>Loading bookings...</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>

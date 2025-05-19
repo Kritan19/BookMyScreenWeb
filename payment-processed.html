@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Payment Processed - Book My Screen</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div id="app">
+        <h1>Payment Processed</h1>
+        <div class="form-container" style="text-align: center;">
+            <p id="processedMessage" style="font-size: 1.1em; margin-bottom:20px;">Your payment has been processed by eSewa. We are confirming the details.</p>
+            <p>If your booking was successful, you should be redirected to your ticket shortly. If not, please check your bookings or contact support.</p>
+            <button onclick="window.location.href='index.html'">Go to Homepage</button>
+        </div>
+    </div>
+     <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const params = new URLSearchParams(window.location.search);
+            const message = params.get('message');
+            if (message) {
+                document.getElementById('processedMessage').textContent = decodeURIComponent(message.replace(/_/g, ' '));
+            }
+        });
+    </script>
+</body>
+</html>

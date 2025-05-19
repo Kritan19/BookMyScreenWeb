@@ -1,0 +1,431 @@
+/* --- START OF FILE style.css --- */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Poppins', sans-serif;
+    background: #1a1c2c;
+    color: #e0e0e0;
+    min-height: 100vh;
+    line-height: 1.6;
+}
+
+#app {
+    width: 100%;
+    max-width: 1200px;
+    padding: 20px;
+    margin: 0 auto; /* Center the app container */
+}
+
+h1 {
+    color: #00ddeb;
+    text-align: center;
+    font-size: 2.5em;
+    margin-bottom: 30px; /* Increased margin */
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    text-shadow: 0 0 10px rgba(0, 221, 235, 0.5);
+    animation: glow 2s infinite alternate;
+}
+
+h2 {
+    color: #00ddeb;
+    font-size: 1.8em; /* Standardized h2 */
+    margin-bottom: 20px; /* Standardized margin */
+    text-align: center; /* Center section titles */
+}
+
+
+@keyframes glow {
+    from { text-shadow: 0 0 5px rgba(0, 221, 235, 0.5); }
+    to { text-shadow: 0 0 15px rgba(0, 221, 235, 0.8); }
+}
+
+/* Containers for different sections */
+#authContainer, #mainContent {
+    padding-top: 20px;
+}
+#authContainer{
+    display: flex; /* Used in JS to show/hide */
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 70vh;
+}
+
+
+#auth, #movieList, #adminSection, .form-container, #ticketDetailsContainer {
+    background: #2f3249;
+    border-radius: 10px;
+    padding: 25px; /* Increased padding */
+    margin: 20px 0; /* Standardized margin */
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.4); /* Enhanced shadow */
+    animation: slideIn 0.5s ease-out;
+}
+#auth { /* Specific for login/signup container */
+    max-width: 500px;
+    width: 100%;
+}
+
+
+@keyframes slideIn {
+    from { opacity: 0; transform: translateY(20px); } /* Changed to translateY */
+    to { opacity: 1; transform: translateY(0); }
+}
+
+input[type="email"],
+input[type="password"],
+input[type="text"],
+select {
+    width: 100%;
+    padding: 12px; /* Increased padding */
+    margin-bottom: 15px; /* Standardized margin */
+    border: 1px solid #45486b; /* Subtle border */
+    border-radius: 5px;
+    background: #3b3e5a;
+    color: #e0e0e0;
+    font-size: 1em;
+    transition: all 0.3s ease;
+}
+
+input[type="email"]:focus,
+input[type="password"]:focus,
+input[type="text"]:focus,
+select:focus {
+    outline: none;
+    background: #45486b;
+    border-color: #00ddeb;
+    box-shadow: 0 0 8px rgba(0, 221, 235, 0.3);
+}
+
+button {
+    min-width: 150px; /* Minimum width */
+    padding: 12px 20px; /* Adjusted padding */
+    margin: 8px 4px; /* Consistent margin */
+    border: none;
+    border-radius: 5px;
+    background: #00ddeb;
+    color: #1a1c2c;
+    font-size: 1em;
+    font-weight: 600; /* Bolder text */
+    cursor: pointer;
+    transition: all 0.3s ease;
+    text-transform: uppercase; /* Uppercase text */
+    letter-spacing: 0.5px;
+}
+
+button:hover {
+    background: #00c4d2;
+    box-shadow: 0 0 12px rgba(0, 221, 235, 0.6); /* Enhanced hover shadow */
+    transform: translateY(-2px);
+}
+button:disabled {
+    background-color: #555;
+    cursor: not-allowed;
+    color: #aaa;
+    transform: none;
+    box-shadow: none;
+}
+button.delete-button {
+    background-color: #ff5555;
+    color: white;
+}
+button.delete-button:hover {
+    background-color: #cc4444;
+}
+
+
+.authError { /* Class for both login and signup errors */
+    color: #ff5555;
+    margin-top: 10px;
+    font-size: 0.9em;
+    min-height: 1em; /* Prevent layout shift */
+}
+
+/* Movie List Styles */
+.movie-grid {
+    display: grid; /* Using grid for better responsiveness */
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); /* Responsive columns */
+    gap: 25px; /* Space between cards */
+    padding: 10px 0;
+}
+
+.movie-card {
+    background: #3b3e5a;
+    border-radius: 10px;
+    padding: 15px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    display: flex;
+    flex-direction: column;
+    height: auto; /* Allow height to adjust */
+}
+
+.movie-card:hover {
+    transform: translateY(-5px) scale(1.02); /* Slightly more hover effect */
+    box-shadow: 0 8px 15px rgba(0, 0, 0, 0.4);
+}
+
+.movie-card img {
+    width: 100%;
+    height: 300px; /* Adjusted for better proportion */
+    object-fit: cover;
+    border-radius: 5px;
+    margin-bottom: 15px;
+}
+
+.movie-card h3 {
+    font-size: 1.3em; /* Slightly larger */
+    color: #00ddeb;
+    margin-bottom: 8px;
+    text-align: center;
+    min-height: 2.6em; /* For two lines of text */
+}
+
+.movie-card p.movie-showtimes {
+    font-size: 0.9em;
+    color: #d0d0d0;
+    text-align: center;
+    margin-bottom: 15px; /* More space before button */
+    flex-grow: 1; /* Allow p to take space if card height varies */
+}
+.movie-card .book-button, .movie-card .admin-movie-actions button {
+    width: 100%; /* Make buttons full width in card */
+    margin: 5px 0 0 0; /* Adjust margin for buttons in card */
+}
+
+
+/* Admin Form Styles */
+#adminForm, #bookingsDisplayArea {
+    margin-top: 20px;
+    padding: 20px;
+}
+#adminForm h2, #bookingsDisplayArea h2 {
+    margin-bottom: 15px;
+}
+
+
+/* User Actions (Logout) */
+#userActions {
+    text-align: right;
+    margin-bottom: 20px;
+    padding: 10px;
+    background-color: #2f3249;
+    border-radius: 8px;
+}
+#currentUserDisplay {
+    color: #00ddeb;
+    font-weight: 500;
+}
+#logoutButton {
+    background-color: #ff5555;
+    color: white;
+    margin-left: 15px;
+}
+#logoutButton:hover {
+    background-color: #dd4444;
+}
+
+/* Booking Page Styles (from booking.html and enhanced) */
+#bookingSection {
+    background: #2f3249;
+    border-radius: 15px;
+    padding: 25px;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.4);
+    text-align: center;
+    max-width: 900px; /* Wider for more seats */
+    margin: 20px auto;
+}
+
+#bookingSection #showtimeSelect {
+    padding: 12px;
+    margin-bottom: 25px;
+}
+
+#seatMapContainer {
+    margin: 25px 0;
+    padding: 15px;
+    border: 1px solid #45486b;
+    border-radius: 10px;
+    background-color: #1f2133; /* Slightly different background for contrast */
+    min-height: 150px; /* For loading message */
+}
+#seatMap {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.screen {
+    width: 70%;
+    max-width: 450px;
+    height: 40px;
+    background: #00ddeb;
+    color: #1a1c2c;
+    font-weight: bold;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 20px 20px 0 0;
+    margin-bottom: 25px;
+    font-size: 1.1em;
+}
+.screen::before {
+    content: 'SCREEN';
+}
+
+.row {
+    display: flex;
+    justify-content: center;
+    margin: 6px 0; /* Spacing between rows */
+}
+
+.seat {
+    width: 32px; /* Adjust as needed for 10 seats per row */
+    height: 32px;
+    margin: 0 4px; /* Adjust as needed */
+    border-radius: 6px; /* Slightly squarish */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all 0.2s ease-in-out;
+    font-size: 0.75em; /* Smaller font for more seats */
+    border: 1px solid transparent;
+    font-weight: 600;
+}
+
+.seat.available {
+    background: #00ddeb;
+    color: #1a1c2c;
+    border-color: #00b7c3;
+}
+.seat.available:hover {
+    transform: scale(1.1);
+    background: #20eafb;
+    box-shadow: 0 0 8px #20eafb;
+}
+
+.seat.selected {
+    background: #ffc107;
+    color: #1a1c2c;
+    border-color: #e0ac00;
+    transform: scale(1.05);
+}
+
+.seat.reserved {
+    background: #6c757d;
+    color: #c0c0c0;
+    border-color: #5a6268;
+    cursor: not-allowed;
+    opacity: 0.8;
+}
+
+.legend {
+    display: flex;
+    justify-content: center;
+    gap: 25px;
+    margin-top: 25px;
+    padding: 10px;
+}
+.legend-item {
+    display: flex;
+    align-items: center;
+    font-size: 0.9em;
+}
+.legend-item .legend-color {
+    width: 18px;
+    height: 18px;
+    margin-right: 8px;
+    border-radius: 4px;
+    border: 1px solid #45486b;
+}
+.legend-color.available { background: #00ddeb; }
+.legend-color.reserved { background: #6c757d; }
+.legend-color.selected { background: #ffc107; }
+
+#bookingSection button {
+    width: auto; /* Auto width based on content */
+    min-width: 220px;
+    padding: 12px 25px;
+    margin-top: 20px;
+}
+
+
+/* Payment Page & Ticket Page Styling */
+.form-container, #ticketDetailsContainer { /* General container for forms/details */
+    max-width: 650px; /* Consistent max width */
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.form-container label, #ticketDetailsContainer label {
+    display: block;
+    margin-top: 12px;
+    margin-bottom: 6px;
+    color: #00ddeb;
+    font-weight: 500; /* Slightly bolder labels */
+}
+#bookingSummary {
+    margin-bottom: 25px;
+    padding: 15px;
+    background-color: #3b3e5a;
+    border-left: 4px solid #00ddeb;
+    border-radius: 5px;
+    line-height: 1.7;
+}
+#bookingSummary h3 {
+    margin-top: 0;
+    margin-bottom: 10px;
+    color: #00ddeb;
+}
+#bookingSummary p { margin-bottom: 5px; }
+
+#totalAmount {
+    font-size: 1.3em;
+    margin: 20px 0;
+    color: #00ddeb;
+    text-align: center;
+    font-weight: 600;
+}
+
+/* Ticket Page Specifics */
+#ticketInfo p {
+    margin-bottom: 10px;
+    font-size: 1.1em;
+}
+#ticketInfo p strong {
+    color: #00ddeb;
+    margin-right: 8px;
+}
+
+/* Admin Bookings Table */
+#bookingsTableContainer {
+    overflow-x: auto; /* Allow horizontal scrolling for table on small screens */
+}
+#bookingsDisplayArea table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 15px;
+    font-size: 0.9em;
+}
+#bookingsDisplayArea th, #bookingsDisplayArea td {
+    border: 1px solid #45486b;
+    padding: 10px;
+    text-align: left;
+}
+#bookingsDisplayArea th {
+    background-color: #3b3e5a;
+    color: #00ddeb;
+}
+#bookingsDisplayArea tr:nth-child(even) {
+    background-color: #34374f;
+}
+#bookingsDisplayArea tr:hover {
+    background-color: #4a4e69;
+}
+
+/* --- END OF FILE style.css --- */
